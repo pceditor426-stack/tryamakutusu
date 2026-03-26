@@ -9,15 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* GENEL TASARIM */
         body { 
             font-family: 'Segoe UI', sans-serif; 
             background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
             color: #f8fafc; margin: 0; padding: 0; min-height: 100vh;
         }
         .container { max-width: 1200px; margin: 40px auto; padding: 0 40px; text-align: center; }
-
-        /* LOGO VE BAŞLIK */
         .logo-area { margin-bottom: 20px; }
         .logo-area img { 
             width: 130px; height: 130px; object-fit: cover; 
@@ -26,17 +23,13 @@
         }
         h1 { color: #38bdf8; font-size: 42px; margin: 10px 0; text-transform: uppercase; letter-spacing: 2px; }
         .subtitle { color: #94a3b8; margin-bottom: 30px; }
-
-        /* ARAMA ÇUBUĞU */
+        
         #searchBar { 
             width: 100%; max-width: 600px; padding: 15px 25px; 
             margin-bottom: 50px; border-radius: 12px; border: 2px solid #334155; 
             background: #1e293b; color: white; font-size: 18px; outline: none;
-            transition: 0.3s;
         }
-        #searchBar:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
 
-        /* OYUN KARTLARI */
         .game-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
         .game-card { 
             background: rgba(30, 41, 59, 0.8); padding: 25px; border-radius: 20px; 
@@ -64,18 +57,37 @@
             font-weight: bold; text-decoration: none; display: block; text-align: center;
         }
 
-        /* YORUM ALANI (GÜNCELLENMİŞ) */
+        /* YAMA İSTEĞİ PANELİ TASARIMI */
         .comment-section {
-            margin-top: 60px; 
-            background: rgba(15, 23, 42, 0.6); 
-            padding: 35px; 
-            border-radius: 20px; 
-            border: 1px solid #334155;
-            text-align: left;
-            min-height: 300px; /* Siyahlık hissini azaltmak için yer ayırdık */
+            margin-top: 60px; background: rgba(30, 41, 59, 0.5); 
+            padding: 35px; border-radius: 20px; border: 1px solid #334155; text-align: left;
         }
+        .form-info-note {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 0 10px 10px 0;
+            color: #e2e8f0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; color: #38bdf8; font-weight: bold; margin-bottom: 8px; font-size: 14px; }
+        .comment-input {
+            width: 100%; background: #0f172a; border: 1px solid #334155; 
+            padding: 12px; border-radius: 8px; color: white;
+            font-family: inherit; outline: none; box-sizing: border-box; font-size: 15px;
+        }
+        .comment-input:focus { border-color: #38bdf8; }
+        
+        .send-btn {
+            background: #38bdf8; color: #0f172a; border: none; padding: 12px 25px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s;
+            width: 100%; font-size: 16px; margin-top: 10px;
+        }
+        .send-btn:hover { background: #7dd3fc; }
 
-        /* FOOTER VE HUKUKİ */
         .legal-footer {
             margin-top: 40px; padding: 35px; background: rgba(30, 41, 59, 0.6);
             border-radius: 20px; text-align: left; border-top: 4px solid #f59e0b;
@@ -100,7 +112,6 @@
         <input type="text" id="searchBar" placeholder="Oyun ara..." onkeyup="aramaYap()">
 
         <div id="gameList" class="game-list">
-            
             <div class="game-card">
                 <div class="download-info"><i class="fa-solid fa-download"></i> <span>112.3 MB</span></div>
                 <span class="badge">PC - TR YAMA</span>
@@ -124,36 +135,26 @@
                 <p class="description">Niko Bellic'in hikayesini otomatik kurulumlu yama ile Türkçeleştirin.</p>
                 <a href="https://drive.google.com/uc?export=download&id=1lljctT-EpDdHj3JWBHAF_ngClWtP9jhH" target="_blank" class="fix-btn">İndir</a>
             </div>
-
         </div>
 
         <div class="comment-section">
-            <h2 style="color: #38bdf8; margin-bottom: 25px;"><i class="fa-solid fa-comments"></i> Topluluk ve Geri Bildirim</h2>
+            <h2 style="color: #38bdf8; margin-bottom: 20px;"><i class="fa-solid fa-envelope-open-text"></i> İletişim & İstek</h2>
             
-            <div id="cusdis_thread"
-              data-host="https://cusdis.com"
-              data-app-id="62400300-3334-4564-9988-776655443322"
-              data-page-id="tryamakutusu_home"
-              data-page-url="https://pceditor426-stack.github.io/tryamakutusu/"
-              data-page-title="TR Yama Kutusu Ana Sayfa"
-              data-theme="dark"
-            ></div>
+            <div class="form-info-note">
+                <i class="fa-solid fa-circle-info"></i> İstediğiniz bir oyunun TR yaması için bildirim bırakın veya sitemizle ilgili görüşlerinizi paylaşın.
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">Adınız / Nickname</label>
+                <input type="text" id="uName" class="comment-input" placeholder="İsminizi yazın...">
+            </div>
 
-            <script>
-              window.CUSDIS_LOCALE = {
-                "powered_by": "Yorum Sistemi",
-                "post": "Gönder",
-                "width": "Genişlik",
-                "nickname": "Kullanıcı Adı",
-                "mail": "E-posta (İsteğe Bağlı)",
-                "parent_post": "Yanıtlanan Yorum",
-                "placeholder": "Yorumunuzu veya yama isteğinizi buraya yazabilirsiniz...",
-                "reply": "Yanıtla",
-                "comments": "Yorumlar",
-                "loading": "Yükleniyor..."
-              }
-            </script>
-            <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+            <div class="form-group">
+                <label class="form-label">Yama İsteğiniz veya Mesajınız</label>
+                <textarea id="uMessage" class="comment-input" style="height: 100px; resize: none;" placeholder="Hangi oyunun yamasını istiyorsunuz?"></textarea>
+            </div>
+            
+            <button onclick="mesajGonder()" class="send-btn">İsteği Gönder</button>
         </div>
 
         <div class="legal-footer">
@@ -168,6 +169,22 @@
     </div>
 
     <script>
+        function mesajGonder() {
+            const isim = document.getElementById('uName').value;
+            const mesaj = document.getElementById('uMessage').value;
+            
+            if(isim.trim() === "" || mesaj.trim() === "") {
+                alert("Lütfen tüm alanları doldurun!");
+                return;
+            }
+
+            const mailAdres = "pceditor426@gmail.com";
+            const konu = "Yeni TR Yama İsteği: " + isim;
+            const govde = "Kullanıcı: " + isim + "\n\nİstek/Mesaj:\n" + mesaj;
+
+            window.location.href = "mailto:" + mailAdres + "?subject=" + encodeURIComponent(konu) + "&body=" + encodeURIComponent(govde);
+        }
+
         function aramaYap() {
             let input = document.getElementById('searchBar').value.toLowerCase();
             let cards = document.getElementsByClassName('game-card');
